@@ -78,8 +78,9 @@ function MainNav() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <NavLink
+                  <NavButton
                     to={item.to}
+                    name={item.name}
                     key={item.name}
                     className={classNames(
                       item.current
@@ -87,9 +88,7 @@ function MainNav() {
                         : isInactiveMenuItemClasses,
                       "rounded-md px-3 py-2 text-sm font-medium"
                     )}
-                  >
-                    {item.name}
-                  </NavLink>
+                  ></NavButton>
                 ))}
               </div>
             </div>
