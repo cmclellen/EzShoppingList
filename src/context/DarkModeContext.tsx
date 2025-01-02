@@ -1,12 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import {
-  createContext,
-  ReactNode,
-  SetStateAction,
-  Dispatch,
-  useContext,
-  useEffect,
-} from "react";
+import { createContext, ReactNode, useContext, useEffect } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 interface DarkModeProviderProps {
