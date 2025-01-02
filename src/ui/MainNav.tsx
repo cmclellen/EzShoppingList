@@ -10,9 +10,8 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { forwardRef } from "react";
-import { HiBars3, HiBell, HiMoon, HiSun, HiXMark } from "react-icons/hi2";
+import { HiBars3, HiBell, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
-import { useDarkMode } from "../context/DarkModeContext";
 import DarkModeToggle from "./DarkModeToggle";
 
 const navigation = [{ name: "Lists", href: "#", to: "/lists", current: true }];
