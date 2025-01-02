@@ -14,13 +14,7 @@ import { HiBars3, HiBell, HiMoon, HiSun, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 
-const navigation = [
-  { name: "Lists", href: "#", to: "/lists", current: true },
-  { name: "Other", href: "#", to: "/lists", current: false },
-  //   { name: "Team", href: "#", current: false },
-  //   { name: "Projects", href: "#", current: false },
-  //   { name: "Calendar", href: "#", current: false },
-];
+const navigation = [{ name: "Lists", href: "#", to: "/lists", current: true }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
