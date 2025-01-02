@@ -4,17 +4,18 @@ import MainNav from "./ui/MainNav";
 import Lists from "./pages/Lists";
 import PageNotFound from "./pages/PageNotFound";
 import { DarkModeProvider } from "./context/DarkModeContext";
+import AppLayout from "./ui/AppLayout";
 
 function App() {
   return (
     <>
       <DarkModeProvider>
         <BrowserRouter>
-          <MainNav />
-          <h1 className="text-3xl font-bold underline">Hello world!</h1>
           <Routes>
-            <Route path="lists" element={<Lists />}></Route>
-            <Route path="*" element={<PageNotFound />}></Route>
+            <Route element={<AppLayout />}>
+              <Route path="lists" element={<Lists />}></Route>
+              <Route path="*" element={<PageNotFound />}></Route>
+            </Route>
           </Routes>
         </BrowserRouter>
       </DarkModeProvider>
