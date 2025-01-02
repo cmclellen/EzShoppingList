@@ -14,25 +14,26 @@ import { HiBars3, HiBell, HiMoon, HiSun, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 
-const navigation = [
-  { name: "Lists", href: "#", to: "/lists", current: true },
-  { name: "Other", href: "#", to: "/lists", current: false },
-  //   { name: "Team", href: "#", current: false },
-  //   { name: "Projects", href: "#", current: false },
-  //   { name: "Calendar", href: "#", current: false },
-];
+const navigation = [{ name: "Lists", href: "#", to: "/lists", current: true }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const isActiveMenuItemClasses = "bg-gray-900 text-white";
-const isInactiveMenuItemClasses =
-  "text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white";
-
 const NavButton = forwardRef(function (item: any, ref: any) {
+  let clazz: string = item.current
+    ? "bg-gray-900 dark:bg-gray-600 text-white"
+    : "text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white";
+
+  clazz = classNames(
+    clazz,
+    item.isMobile
+      ? "block rounded-md px-3 py-2 text-base font-medium"
+      : "rounded-md px-3 py-2 text-sm font-medium"
+  );
+
   return (
-    <NavLink ref={ref} key={item.name} {...item}>
+    <NavLink ref={ref} key={item.name} className={clazz} to={item.to}>
       {item.name}
     </NavLink>
   );
@@ -78,18 +79,12 @@ function MainNav() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <NavLink
+                  <NavButton
                     to={item.to}
+                    name={item.name}
                     key={item.name}
-                    className={classNames(
-                      item.current
-                        ? isActiveMenuItemClasses
-                        : isInactiveMenuItemClasses,
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
-                  >
-                    {item.name}
-                  </NavLink>
+                    current={item.current}
+                  ></NavButton>
                 ))}
               </div>
             </div>
@@ -175,14 +170,10 @@ function MainNav() {
               key={item.name}
               as={NavButton}
               name={item.name}
+              isMobile={true}
               to={item.to}
+              current={item.current}
               aria-current={item.current ? "page" : undefined}
-              className={classNames(
-                item.current
-                  ? isActiveMenuItemClasses
-                  : isInactiveMenuItemClasses,
-                "block rounded-md px-3 py-2 text-base font-medium"
-              )}
             ></DisclosureButton>
           ))}
         </div>
