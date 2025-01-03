@@ -7,10 +7,11 @@ import { TiPlus } from "react-icons/ti";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../ui/Spinner";
 import ErrorFallback from "../ui/ErrorFallback";
+import { useModal } from "../ui/Modal";
 
 function ShoppingLists() {
-  // const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>();
   const navigate = useNavigate();
+  const { openName } = useModal();
 
   const {
     data: shoppingLists,
@@ -26,19 +27,26 @@ function ShoppingLists() {
   if (error) return <ErrorFallback error={error}></ErrorFallback>;
 
   return (
-    <PageLayout title="Shopping Lists">
-      <ul className="flex flex-wrap gap-2">
-        {shoppingLists &&
-          shoppingLists.map((list) => (
-            <ShoppingListItem key={list.id} name={list.name}></ShoppingListItem>
-          ))}
-      </ul>
-      <div className="mt-2">
-        <Button icon={<TiPlus />} onClick={() => navigate("add")}>
-          Add shopping list
-        </Button>
-      </div>
-    </PageLayout>
+    <>
+      <PageLayout title="Shopping Lists">
+        <ul className="flex flex-wrap gap-2">
+          {shoppingLists &&
+            shoppingLists.map((list) => (
+              <ShoppingListItem
+                key={list.id}
+                name={list.name}
+                id={list.id!}
+              ></ShoppingListItem>
+            ))}
+        </ul>
+        <div className="mt-2">
+          <Button icon={<TiPlus />} onClick={() => navigate("add")}>
+            Add shopping list
+          </Button>
+        </div>
+        <pre>[{openName}]</pre>
+      </PageLayout>
+    </>
   );
 }
 
