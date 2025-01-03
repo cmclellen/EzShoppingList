@@ -1,14 +1,33 @@
 import supabase from "./supabase";
 
-async function getShoppingLists() {
+export interface ShoppingList {
+  id?: number;
+  name: string;
+}
+
+async function getShoppingLists(): Promise<ShoppingList[]> {
   const { data, error } = await supabase.from("ShoppingList").select("*");
 
   if (error) {
     console.error(error);
-    throw new Error("Cabins could not be loaded");
+    throw new Error("Shopping lists could not be loaded");
   }
 
   return data;
 }
 
-export default getShoppingLists;
+async function addShoppingList(shoppingList: ShoppingList) {
+  const { data, error } = await supabase
+    .from("ShoppingList")
+    .insert([shoppingList])
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Shopping list could not be created");
+  }
+
+  return data;
+}
+
+export { getShoppingLists, addShoppingList };
