@@ -3,7 +3,8 @@ import getShoppingLists from "../services/apiShoppingLists";
 import ShoppingListItem from "../features/ShoppingList/ShoppingListItem";
 import PageLayout from "../ui/PageLayout";
 import Button from "../ui/Button";
-import { HiPlus } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
+import { TiPlus } from "react-icons/ti";
 
 interface ShoppingList {
   id: number;
@@ -13,6 +14,7 @@ interface ShoppingList {
 function ShoppingLists() {
   const [isLoading, setIsLoading] = useState(false);
   const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,10 +35,7 @@ function ShoppingLists() {
           ))}
       </ul>
       <div className="mt-2">
-        <Button
-          icon={<HiPlus className="font-semibold" />}
-          onClick={() => alert("hello")}
-        >
+        <Button icon={<TiPlus />} onClick={() => navigate("add")}>
           Add shopping list
         </Button>
       </div>

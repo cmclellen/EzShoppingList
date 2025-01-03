@@ -25,3 +25,9 @@
   background: rgba(var(--background));
   color: rgba(var(--primary));
 }
+
+@layer components {
+  .sidebar {
+    height: calc(100dvh - 64px);
+  }
+}
