@@ -34,6 +34,7 @@ function DarkModeProvider({ children }: DarkModeProviderProps) {
   useEffect(
     function () {
       document.documentElement.classList.toggle("dark", theme === "dark");
+      document.documentElement.classList.toggle("light", theme === "light");
     },
     [theme]
   );

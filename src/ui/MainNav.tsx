@@ -14,7 +14,10 @@ import { HiBars3, HiBell, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 
-const navigation = [{ name: "Lists", href: "#", to: "/lists", current: true }];
+const navigation = [
+  { name: "Lists", to: "/lists", current: true },
+  { name: "Other", to: "/lists", current: false },
+];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -22,8 +25,8 @@ function classNames(...classes: string[]) {
 
 const NavButton = forwardRef(function (item: any, ref: any) {
   let clazz: string = item.current
-    ? "bg-gray-900 dark:bg-gray-600 text-white"
-    : "text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white";
+    ? "bg-tertiary text-on-tertiary"
+    : "text-on-secondary hover:bg-gray-700 hover:text-white";
 
   clazz = classNames(
     clazz,
@@ -41,11 +44,8 @@ const NavButton = forwardRef(function (item: any, ref: any) {
 
 function MainNav() {
   return (
-    <Disclosure
-      as="nav"
-      className="dark:bg-gray-800 bg-gray-300 dark:text-gray-300 text-gray-800"
-    >
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <Disclosure as="nav" className="bg-secondary">
+      <div className="mx-auto container px-2 sm:px-0">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
@@ -64,11 +64,12 @@ function MainNav() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <img
+              <span className="text-3xl text-stone-800">🛒</span>
+              {/* <img
                 alt="Your Company"
                 src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                 className="h-8 w-auto"
-              />
+              /> */}
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
