@@ -4,9 +4,16 @@ import clsx from "clsx";
 import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
+import { addShoppingList } from "../services/apiShoppingLists";
 
 function AddShoppingList() {
   const navigate = useNavigate();
+
+  async function add() {
+    await addShoppingList({
+      name: "Coles",
+    });
+  }
 
   return (
     <PageLayout title="Add shopping list">
@@ -15,7 +22,7 @@ function AddShoppingList() {
           <Field>
             <Label className="text-sm/6 font-medium text-primary">Name</Label>
             <Description className="text-sm/6 text-primary/50">
-              Use your real name so people will recognize you.
+              The name of the shopping list
             </Description>
             <Input
               className={clsx(
@@ -34,7 +41,7 @@ function AddShoppingList() {
           >
             Cancel
           </Button>
-          <Button icon={<TiPlus />} onClick={() => alert("here")}>
+          <Button icon={<TiPlus />} onClick={add}>
             Save
           </Button>
         </div>

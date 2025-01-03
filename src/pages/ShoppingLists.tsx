@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getShoppingLists from "../services/apiShoppingLists";
+import { getShoppingLists } from "../services/apiShoppingLists";
 import ShoppingListItem from "../features/ShoppingList/ShoppingListItem";
 import PageLayout from "../ui/PageLayout";
 import Button from "../ui/Button";
