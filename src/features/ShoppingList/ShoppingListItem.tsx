@@ -2,7 +2,7 @@ import { TiTrash } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Modal, { useModal } from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteShoppingList } from "../../services/apiShoppingLists";
 import toast from "react-hot-toast";
 
@@ -12,12 +12,14 @@ interface ShoppingListItemProps {
 }
 
 function ShoppingListItem({ id, name }: ShoppingListItemProps) {
-  const { open } = useModal();
+  const { open, close } = useModal();
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: deleteShoppingList,
-    mutationKey: ["shopping-lists"],
     onSuccess: () => {
       toast.success("Successfully deleted shopping list");
+      close();
+      queryClient.invalidateQueries({ queryKey: ["shopping-lists"] });
     },
     onError(err) {
       toast.error(err.message);

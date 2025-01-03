@@ -5,11 +5,12 @@ import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import { addShoppingList, ShoppingList } from "../services/apiShoppingLists";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 function AddShoppingList() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const {
     register,
@@ -19,12 +20,12 @@ function AddShoppingList() {
   } = useForm();
 
   const { mutate } = useMutation({
-    mutationKey: ["shopping-lists"],
     mutationFn: addShoppingList,
     onSuccess: () => {
       toast.success("Shopping list successfully created");
       reset();
       navigate("..");
+      queryClient.invalidateQueries({ queryKey: ["shopping-lists"] });
     },
     onError: (err) => {
       toast.error(err.message);
@@ -45,6 +46,7 @@ function AddShoppingList() {
               The name of the shopping list
             </Description>
             <Input
+              autoComplete="off"
               className={clsx(
                 "mt-3 block w-full rounded-lg border-none bg-primary/5 py-1.5 px-3 text-sm/6 text-primary",
                 "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"

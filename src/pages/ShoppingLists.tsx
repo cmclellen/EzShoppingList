@@ -7,11 +7,9 @@ import { TiPlus } from "react-icons/ti";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../ui/Spinner";
 import ErrorFallback from "../ui/ErrorFallback";
-import { useModal } from "../ui/Modal";
 
 function ShoppingLists() {
   const navigate = useNavigate();
-  const { openName } = useModal();
 
   const {
     data: shoppingLists,
@@ -44,7 +42,6 @@ function ShoppingLists() {
             Add shopping list
           </Button>
         </div>
-        <pre>[{openName}]</pre>
       </PageLayout>
     </>
   );

@@ -4,12 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "rgba(var(--background))",
-        primary: "rgba(var(--primary))",
-        secondary: "rgba(var(--secondary))",
-        "on-secondary": "rgba(var(--on-secondary))",
-        tertiary: "rgba(var(--tertiary))",
-        "on-tertiary": "rgba(var(--on-tertiary))",
+        background: {
+          DEFAULT: "rgba(var(--background))",
+        },
+        primary: {
+          DEFAULT: "rgba(var(--primary))",
+        },
+        secondary: {
+          DEFAULT: "rgba(var(--secondary))",
+        },
+        "on-secondary": {
+          DEFAULT: "rgba(var(--on-secondary))",
+        },
+        tertiary: {
+          DEFAULT: "rgba(var(--tertiary))",
+        },
+        "on-tertiary": {
+          DEFAULT: "rgba(var(--on-tertiary))",
+        },
       },
     },
   },
