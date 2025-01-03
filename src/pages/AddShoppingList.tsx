@@ -4,21 +4,40 @@ import clsx from "clsx";
 import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
-import { addShoppingList } from "../services/apiShoppingLists";
+import { addShoppingList, ShoppingList } from "../services/apiShoppingLists";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function AddShoppingList() {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  async function add() {
-    await addShoppingList({
-      name: "Aldi",
-    });
-    navigate("..");
+  const { mutate } = useMutation({
+    mutationKey: ["shopping-lists"],
+    mutationFn: addShoppingList,
+    onSuccess: () => {
+      toast.success("Shopping list successfully created");
+      reset();
+      navigate("..");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  function onSubmit(data: unknown) {
+    mutate(data as ShoppingList);
   }
 
   return (
     <PageLayout title="Add shopping list">
-      <form className="w-full ">
+      <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full">
           <Field>
             <Label className="text-sm/6 font-medium text-primary">Name</Label>
@@ -30,7 +49,11 @@ function AddShoppingList() {
                 "mt-3 block w-full rounded-lg border-none bg-primary/5 py-1.5 px-3 text-sm/6 text-primary",
                 "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
               )}
+              {...register("name", { required: "This field is required" })}
             />
+            {errors?.name?.message && (
+              <span>{String(errors["name"]?.message)}</span>
+            )}
           </Field>
         </div>
 
@@ -39,10 +62,11 @@ function AddShoppingList() {
             icon={<TiTimes />}
             onClick={() => navigate("..")}
             className="bg-secondary text-on-secondary"
+            type="reset"
           >
             Cancel
           </Button>
-          <Button icon={<TiPlus />} onClick={add}>
+          <Button icon={<TiPlus />} type="submit">
             Save
           </Button>
         </div>
