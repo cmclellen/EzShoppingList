@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import { getShoppingLists } from "../services/apiShoppingLists";
+import { getShoppingLists, ShoppingList } from "../services/apiShoppingLists";
 import ShoppingListItem from "../features/ShoppingList/ShoppingListItem";
 import PageLayout from "../ui/PageLayout";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
 import { TiPlus } from "react-icons/ti";
-
-interface ShoppingList {
-  id: number;
-  name: string;
-}
 
 function ShoppingLists() {
   const [isLoading, setIsLoading] = useState(false);

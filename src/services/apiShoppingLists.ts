@@ -1,6 +1,6 @@
 import supabase from "./supabase";
 
-interface ShoppingList {
+export interface ShoppingList {
   id?: number;
   name: string;
 }
