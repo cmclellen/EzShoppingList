@@ -10,7 +10,7 @@ interface ShoppingList {
   name: string;
 }
 
-function Lists() {
+function ShoppingLists() {
   const [isLoading, setIsLoading] = useState(false);
   const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>();
 
@@ -44,4 +44,4 @@ function Lists() {
   );
 }
 
-export default Lists;
+export default ShoppingLists;

@@ -14,10 +14,7 @@ import { HiBars3, HiBell, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 
-const navigation = [
-  { name: "Lists", to: "/lists", current: true },
-  { name: "Other", to: "/lists", current: false },
-];
+const navigation = [{ name: "Lists", to: "/shopping-lists", current: true }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
