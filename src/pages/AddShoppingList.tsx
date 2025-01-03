@@ -18,7 +18,7 @@ function AddShoppingList() {
     formState: { errors },
   } = useForm();
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate } = useMutation({
     mutationKey: ["shopping-lists"],
     mutationFn: addShoppingList,
     onSuccess: () => {
