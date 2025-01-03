@@ -5,9 +5,14 @@ import { useModal } from "./Modal";
 interface ConfirmDeleteProps {
   onDelete: () => void;
   resourceName: string;
+  disabled?: boolean;
 }
 
-function ConfirmDelete({ onDelete, resourceName }: ConfirmDeleteProps) {
+function ConfirmDelete({
+  onDelete,
+  resourceName,
+  disabled,
+}: ConfirmDeleteProps) {
   const { close } = useModal();
 
   function handleOnDelete(e: ButtonEvent) {
@@ -46,6 +51,7 @@ function ConfirmDelete({ onDelete, resourceName }: ConfirmDeleteProps) {
         <button
           onClick={(e) => handleOnDelete(e)}
           type="button"
+          disabled={disabled}
           className="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/75 sm:ml-3 sm:w-auto"
         >
           Delete
@@ -53,6 +59,7 @@ function ConfirmDelete({ onDelete, resourceName }: ConfirmDeleteProps) {
         <button
           onClick={handleOnCancel}
           type="button"
+          disabled={disabled}
           className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
         >
           Cancel

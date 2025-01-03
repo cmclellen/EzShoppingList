@@ -1,24 +1,16 @@
-import { getShoppingLists } from "../services/apiShoppingLists";
 import ShoppingListItem from "../features/ShoppingList/ShoppingListItem";
 import PageLayout from "../ui/PageLayout";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
 import { TiPlus } from "react-icons/ti";
-import { useQuery } from "@tanstack/react-query";
 import Spinner from "../ui/Spinner";
 import ErrorFallback from "../ui/ErrorFallback";
+import useShoppingLists from "../features/ShoppingList/useShoppingLists";
 
 function ShoppingLists() {
   const navigate = useNavigate();
 
-  const {
-    data: shoppingLists,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["shopping-lists"],
-    queryFn: getShoppingLists,
-  });
+  const { shoppingLists, isLoading, error } = useShoppingLists();
 
   if (isLoading) return <Spinner />;
 

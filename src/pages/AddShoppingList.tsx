@@ -4,13 +4,11 @@ import clsx from "clsx";
 import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
-import { addShoppingList, ShoppingList } from "../services/apiShoppingLists";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ShoppingList } from "../services/apiShoppingLists";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import useAddShoppingList from "../features/ShoppingList/useAddShoppingList";
 
 function AddShoppingList() {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const {
     register,
@@ -19,21 +17,14 @@ function AddShoppingList() {
     formState: { errors },
   } = useForm();
 
-  const { mutate } = useMutation({
-    mutationFn: addShoppingList,
-    onSuccess: () => {
-      toast.success("Shopping list successfully created");
-      reset();
-      navigate("..");
-      queryClient.invalidateQueries({ queryKey: ["shopping-lists"] });
-    },
-    onError: (err) => {
-      toast.error(err.message);
-    },
-  });
+  const { addShoppingList } = useAddShoppingList();
 
   function onSubmit(data: unknown) {
-    mutate(data as ShoppingList);
+    addShoppingList(data as ShoppingList, {
+      onSuccess: (_data) => {
+        reset();
+      },
+    });
   }
 
   return (
