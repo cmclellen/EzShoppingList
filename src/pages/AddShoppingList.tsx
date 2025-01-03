@@ -11,8 +11,9 @@ function AddShoppingList() {
 
   async function add() {
     await addShoppingList({
-      name: "Coles",
+      name: "Aldi",
     });
+    navigate("..");
   }
 
   return (
