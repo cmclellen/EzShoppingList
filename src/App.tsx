@@ -7,6 +7,7 @@ import AppLayout from "./ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import ShoppingList from "./pages/ShoppingList";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +27,9 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route element={<AppLayout />}>
-                <Route path="shopping-lists" element={<ShoppingLists />} />
+                <Route path="shopping-lists" element={<ShoppingLists />}>
+                  <Route path=":id" element={<ShoppingList />}></Route>
+                </Route>
                 <Route path="*" element={<PageNotFound />}></Route>
               </Route>
             </Routes>
