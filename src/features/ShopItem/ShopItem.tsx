@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import QueryKey from "../../utils/queryKeys";
 import { TiTrash } from "react-icons/ti";
 import clsx from "clsx";
+import useDeleteShopItem from "./useDeleteShopItem";
 
 interface ShopItemProps {
   id: number;
@@ -28,6 +29,8 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
     },
   });
 
+  const { deleteShopItem } = useDeleteShopItem();
+
   return (
     <li className="font-semibold flex gap-2 items-center py-5">
       <Checkbox
@@ -40,7 +43,7 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
       <span className={clsx(completed ? "line-through" : "", "flex-1")}>
         {name}
       </span>
-      <TiTrash className="text-2xl" />
+      <TiTrash className="text-2xl" onClick={() => deleteShopItem(id)} />
     </li>
   );
 }

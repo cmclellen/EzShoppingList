@@ -35,4 +35,13 @@ async function addShopItem(item: ShopItem) {
   return data;
 }
 
-export { updateShopItemCompletedStatus, addShopItem };
+async function deleteShopItem(id: number) {
+  const { error } = await supabase.from("ShopItem").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+}
+
+export { updateShopItemCompletedStatus, addShopItem, deleteShopItem };
