@@ -18,7 +18,7 @@ function AddShoppingList() {
     formState: { errors },
   } = useForm();
 
-  const { addShoppingList } = useAddShoppingList();
+  const { addShoppingList, isAddingShoppingList } = useAddShoppingList();
 
   function onSubmit(data: unknown) {
     addShoppingList(data as ShoppingList, {
@@ -37,6 +37,7 @@ function AddShoppingList() {
             <Input
               placeholder="Name"
               autoComplete="off"
+              disabled={isAddingShoppingList}
               className={clsx(
                 "block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
                 "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
@@ -52,10 +53,15 @@ function AddShoppingList() {
             onClick={close}
             className="bg-secondary text-on-secondary"
             type="reset"
+            disabled={isAddingShoppingList}
           >
             Cancel
           </Button>
-          <Button icon={<TiPlus />} type="submit">
+          <Button
+            icon={<TiPlus />}
+            type="submit"
+            disabled={isAddingShoppingList}
+          >
             Save
           </Button>
         </div>

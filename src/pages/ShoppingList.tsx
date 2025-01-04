@@ -12,10 +12,10 @@ import AddShoppingListItem from "./AddShoppingListItem";
 function ShoppingList() {
   const { id } = useParams();
 
-  const { shoppingList, isLoading } = useShoppingList(Number(id));
+  const { shoppingList, isLoadingShoppingList } = useShoppingList(Number(id));
   const shopItems = shoppingList?.ShopItem;
 
-  if (isLoading) return <Spinner />;
+  if (isLoadingShoppingList) return <Spinner />;
 
   return (
     <PageLayout title={`Shopping list: ${shoppingList?.name}`}>

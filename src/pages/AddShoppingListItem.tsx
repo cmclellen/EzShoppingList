@@ -22,7 +22,7 @@ function AddShoppingListItem({ shoppingListId }: AddShoppingListItemProps) {
     formState: { errors },
   } = useForm();
 
-  const { addShopItem } = useAddShopItem();
+  const { addShopItem, isAddingShopItem } = useAddShopItem();
 
   function onSubmit(data: unknown) {
     console.log(data);
@@ -46,6 +46,7 @@ function AddShoppingListItem({ shoppingListId }: AddShoppingListItemProps) {
           <Field>
             <FormRow label="Name" error={errors?.name?.message}>
               <Input
+                disabled={isAddingShopItem}
                 placeholder="Name"
                 autoComplete="off"
                 className={clsx(
@@ -64,10 +65,11 @@ function AddShoppingListItem({ shoppingListId }: AddShoppingListItemProps) {
             onClick={close}
             className="bg-secondary text-on-secondary"
             type="reset"
+            disabled={isAddingShopItem}
           >
             Cancel
           </Button>
-          <Button icon={<TiPlus />} type="submit">
+          <Button disabled={isAddingShopItem} icon={<TiPlus />} type="submit">
             Save
           </Button>
         </div>

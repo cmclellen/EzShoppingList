@@ -5,12 +5,16 @@ import QueryKey from "../../utils/queryKeys";
 export default function useShoppingList(id: number) {
   const {
     data: shoppingList,
-    isLoading,
     error,
+    isLoading: isLoadingShoppingList,
   } = useQuery({
     queryKey: [QueryKey.SHOPPING_LIST],
     queryFn: () => getShoppingList(id),
   });
 
-  return { shoppingList, isLoading, error };
+  return {
+    shoppingList,
+    isLoadingShoppingList,
+    error,
+  };
 }
