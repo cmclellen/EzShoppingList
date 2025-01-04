@@ -3,7 +3,6 @@ import PageLayout from "../ui/PageLayout";
 import clsx from "clsx";
 import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
-import { useNavigate } from "react-router-dom";
 import { ShoppingList } from "../services/apiShoppingLists";
 import { useForm } from "react-hook-form";
 import useAddShoppingList from "../features/ShoppingList/useAddShoppingList";
@@ -11,7 +10,6 @@ import { useModal } from "../ui/Modal";
 
 function AddShoppingList() {
   const { close } = useModal();
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
