@@ -1,8 +1,11 @@
+import { ShopItem } from "./apiShopItem";
 import supabase from "./supabase";
 
 export interface ShoppingList {
   id?: number;
   name: string;
+
+  ShopItem?: ShopItem[];
 }
 
 async function getShoppingLists(): Promise<ShoppingList[]> {
@@ -11,6 +14,22 @@ async function getShoppingLists(): Promise<ShoppingList[]> {
   if (error) {
     console.error(error);
     throw new Error("Shopping lists could not be loaded");
+  }
+
+  return data;
+}
+
+async function getShoppingList(id: number): Promise<ShoppingList> {
+  const { data, error } = await supabase
+    .from("ShoppingList")
+    .select("*, ShopItem (*)")
+    .eq("id", id)
+    .limit(1)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Shopping list could not be loaded");
   }
 
   return data;
@@ -38,4 +57,9 @@ async function deleteShoppingList(id: number) {
   }
 }
 
-export { getShoppingLists, addShoppingList, deleteShoppingList };
+export {
+  getShoppingLists,
+  addShoppingList,
+  deleteShoppingList,
+  getShoppingList,
+};

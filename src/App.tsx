@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ShoppingLists from "./pages/ShoppingLists";
 import PageNotFound from "./pages/PageNotFound";
@@ -19,24 +19,23 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <>
-      <Toaster />
+    <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <DarkModeProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route element={<AppLayout />}>
-                <Route path="shopping-lists" element={<ShoppingLists />}>
-                  <Route path=":id" element={<ShoppingList />}></Route>
-                </Route>
-                <Route path="*" element={<PageNotFound />}></Route>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<Navigate replace to="shopping-lists" />} />
+              <Route path="shopping-lists" element={<ShoppingLists />}>
+                <Route path=":id" element={<ShoppingList />}></Route>
               </Route>
-            </Routes>
-          </BrowserRouter>
+              <Route path="*" element={<PageNotFound />}></Route>
+            </Route>
+          </Routes>
+          <Toaster />
         </DarkModeProvider>
       </QueryClientProvider>
-    </>
+    </BrowserRouter>
   );
 }
 
