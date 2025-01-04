@@ -21,6 +21,7 @@ function ShoppingList() {
             shopItems.map((item) => (
               <ShopItem
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 completed={item.completed}
               />
