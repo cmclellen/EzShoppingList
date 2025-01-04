@@ -6,6 +6,8 @@ import { TiPlus } from "react-icons/ti";
 import Spinner from "../ui/Spinner";
 import ErrorFallback from "../ui/ErrorFallback";
 import useShoppingLists from "../features/ShoppingList/useShoppingLists";
+import Modal from "../ui/Modal";
+import AddShoppingList from "./AddShoppingList";
 
 function ShoppingLists() {
   const navigate = useNavigate();
@@ -30,9 +32,12 @@ function ShoppingLists() {
             ))}
         </ul>
         <div className="mt-2">
-          <Button icon={<TiPlus />} onClick={() => navigate("add")}>
-            Add shopping list
-          </Button>
+          <Modal.Open opensWindowName="add">
+            <Button icon={<TiPlus />}>Add shopping list</Button>
+          </Modal.Open>
+          <Modal.Window name="add">
+            <AddShoppingList />
+          </Modal.Window>
         </div>
       </PageLayout>
     </>

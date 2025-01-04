@@ -1,4 +1,4 @@
-import { Description, Field, Input, Label } from "@headlessui/react";
+import { Field, Input, Label } from "@headlessui/react";
 import PageLayout from "../ui/PageLayout";
 import clsx from "clsx";
 import Button from "../ui/Button";
@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { ShoppingList } from "../services/apiShoppingLists";
 import { useForm } from "react-hook-form";
 import useAddShoppingList from "../features/ShoppingList/useAddShoppingList";
+import { useModal } from "../ui/Modal";
 
 function AddShoppingList() {
+  const { close } = useModal();
   const navigate = useNavigate();
   const {
     register,
@@ -23,6 +25,7 @@ function AddShoppingList() {
     addShoppingList(data as ShoppingList, {
       onSuccess: (_data) => {
         reset();
+        close();
       },
     });
   }
@@ -48,10 +51,10 @@ function AddShoppingList() {
           </Field>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 mt-2">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 mt-4">
           <Button
             icon={<TiTimes />}
-            onClick={() => navigate("..")}
+            onClick={close}
             className="bg-secondary text-on-secondary"
             type="reset"
           >

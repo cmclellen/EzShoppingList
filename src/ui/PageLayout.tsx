@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Sidebar from "./Sidebar";
 import Modal from "./Modal";
+import { Outlet, useOutlet } from "react-router-dom";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -8,15 +8,18 @@ interface PageLayoutProps {
 }
 
 function PageLayout({ title, children }: PageLayoutProps) {
+  const outlet = useOutlet();
+
   return (
     <Modal>
-      <div className="">
+      {outlet ? (
+        <Outlet />
+      ) : (
         <div>
-          <h1 className="text-3xl font-semibold py-4">{title}</h1>
+          <h1 className="text-3xl font-semibold pb-4">{title}</h1>
           {children}
         </div>
-        <Sidebar />
-      </div>
+      )}
     </Modal>
   );
 }

@@ -28,7 +28,7 @@ function ShoppingListItem({ id, name }: ShoppingListItemProps) {
       <Modal.Open opensWindowName={`delete-${name}`}>
         <TiTrash className="text-2xl absolute right-0 top-0" />
       </Modal.Open>
-      <Modal.Window opens={`delete-${name}`}>
+      <Modal.Window name={`delete-${name}`}>
         <ConfirmDelete
           onDelete={() => handleOnDelete(id)}
           disabled={isDeletingShoppingList}

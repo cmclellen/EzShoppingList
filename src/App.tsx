@@ -27,9 +27,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route element={<AppLayout />}>
-                <Route path="shopping-lists" element={<ShoppingLists />}>
-                  <Route path="add" element={<AddShoppingList />}></Route>
-                </Route>
+                <Route path="shopping-lists" element={<ShoppingLists />} />
                 <Route path="*" element={<PageNotFound />}></Route>
               </Route>
             </Routes>
