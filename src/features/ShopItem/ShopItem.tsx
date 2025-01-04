@@ -7,6 +7,8 @@ import QueryKey from "../../utils/queryKeys";
 import { TiTrash } from "react-icons/ti";
 import clsx from "clsx";
 import useDeleteShopItem from "./useDeleteShopItem";
+import Modal, { useModal } from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 interface ShopItemProps {
   id: number;
@@ -15,6 +17,7 @@ interface ShopItemProps {
 }
 
 function ShopItem({ id, name, completed }: ShopItemProps) {
+  const { close } = useModal();
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -29,7 +32,15 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
     },
   });
 
-  const { deleteShopItem } = useDeleteShopItem();
+  const { deleteShopItem, isDeletingShopItem } = useDeleteShopItem();
+
+  function handleOnDelete(id: number) {
+    deleteShopItem(id, {
+      onSuccess: () => {
+        close();
+      },
+    });
+  }
 
   return (
     <li className="font-semibold flex gap-2 items-center py-5">
@@ -43,7 +54,16 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
       <span className={clsx(completed ? "line-through" : "", "flex-1")}>
         {name}
       </span>
-      <TiTrash className="text-2xl" onClick={() => deleteShopItem(id)} />
+      <Modal.Open opensWindowName={`delete-${id}`}>
+        <TiTrash className="text-2xl" />
+      </Modal.Open>
+      <Modal.Window name={`delete-${id}`}>
+        <ConfirmDelete
+          onDelete={() => handleOnDelete(id)}
+          disabled={isDeletingShopItem}
+          resourceName={name}
+        />
+      </Modal.Window>
     </li>
   );
 }
