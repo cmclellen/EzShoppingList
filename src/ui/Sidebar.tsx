@@ -6,7 +6,7 @@ function Sidebar() {
   if (!outlet) return null;
 
   return (
-    <div className="absolute top-0 right-0 md:sidebar bg-background w-full md:w-2/6 p-4 md:border-l md:border-primary">
+    <div className="absolute top-[65px] right-0 md:sidebar bg-background w-full md:w-2/6 p-4 md:border-l md:border-primary">
       <Outlet />
     </div>
   );

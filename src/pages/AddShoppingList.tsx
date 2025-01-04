@@ -33,13 +33,11 @@ function AddShoppingList() {
         <div className="w-full">
           <Field>
             <Label className="text-sm/6 font-medium text-primary">Name</Label>
-            <Description className="text-sm/6 text-primary/50">
-              The name of the shopping list
-            </Description>
             <Input
+              placeholder="Name of the shopping list"
               autoComplete="off"
               className={clsx(
-                "mt-3 block w-full rounded-lg border-none bg-primary/5 py-1.5 px-3 text-sm/6 text-primary",
+                "mt-3 block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
                 "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
               )}
               {...register("name", { required: "This field is required" })}

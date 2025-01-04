@@ -10,7 +10,7 @@ interface PageLayoutProps {
 function PageLayout({ title, children }: PageLayoutProps) {
   return (
     <Modal>
-      <div className="relative">
+      <div className="">
         <div>
           <h1 className="text-3xl font-semibold py-4">{title}</h1>
           {children}
