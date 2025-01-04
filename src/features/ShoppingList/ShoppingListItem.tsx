@@ -1,6 +1,6 @@
 import { TiTrash } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import Modal from "../../ui/Modal";
+import Modal, { useModal } from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import useDeleteShoppingList from "./useDeleteShoppingList";
 
@@ -10,11 +10,16 @@ interface ShoppingListItemProps {
 }
 
 function ShoppingListItem({ id, name }: ShoppingListItemProps) {
+  const { close } = useModal();
   const { isDeletingShoppingList, deleteShoppingList } =
     useDeleteShoppingList();
 
   function handleOnDelete(id: number) {
-    deleteShoppingList(id);
+    deleteShoppingList(id, {
+      onSuccess: () => {
+        close();
+      },
+    });
   }
 
   return (

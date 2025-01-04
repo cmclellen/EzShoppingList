@@ -10,7 +10,6 @@ export default function useDeleteShoppingList() {
       mutationFn: deleteShoppingListApi,
       onSuccess: () => {
         toast.success("Successfully deleted shopping list");
-        close();
         queryClient.invalidateQueries({ queryKey: [QueryKey.SHOPPING_LISTS] });
       },
       onError(err) {
