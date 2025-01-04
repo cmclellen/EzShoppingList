@@ -10,7 +10,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { forwardRef } from "react";
-import { HiBars3, HiBell, HiXMark } from "react-icons/hi2";
+import { HiBars3, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 
