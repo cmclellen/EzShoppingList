@@ -1,13 +1,13 @@
 import { Field, Input } from "@headlessui/react";
 import PageLayout from "../ui/PageLayout";
 import { useForm } from "react-hook-form";
-import clsx from "clsx";
 import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
 import useAddShopItem from "../features/ShopItem/useAddShopItem";
 import { ShopItem } from "../services/apiShopItem";
 import { useModal } from "../ui/Modal";
 import FormRow from "../ui/FormRow";
+import FormInput from "../ui/FormInput";
 
 interface AddShoppingListItemProps {
   shoppingListId: number;
@@ -45,15 +45,13 @@ function AddShoppingListItem({ shoppingListId }: AddShoppingListItemProps) {
         <div className="w-full">
           <Field>
             <FormRow label="Name" error={errors?.name?.message}>
-              <Input
+              <FormInput
                 disabled={isAddingShopItem}
                 placeholder="Name"
                 autoComplete="off"
-                className={clsx(
-                  "block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
-                  "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
-                )}
-                {...register("name", { required: "This field is required" })}
+                register={() =>
+                  register("name", { required: "This field is required" })
+                }
               />
             </FormRow>
           </Field>

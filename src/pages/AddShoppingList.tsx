@@ -1,6 +1,4 @@
-import { Input } from "@headlessui/react";
 import PageLayout from "../ui/PageLayout";
-import clsx from "clsx";
 import Button from "../ui/Button";
 import { TiPlus, TiTimes } from "react-icons/ti";
 import { ShoppingList } from "../services/apiShoppingLists";
@@ -8,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useAddShoppingList from "../features/ShoppingList/useAddShoppingList";
 import { useModal } from "../ui/Modal";
 import FormRow from "../ui/FormRow";
+import FormInput from "../ui/FormInput";
 
 function AddShoppingList() {
   const { close } = useModal();
@@ -34,15 +33,13 @@ function AddShoppingList() {
       <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full">
           <FormRow label="Name" error={errors?.name?.message}>
-            <Input
+            <FormInput
               placeholder="Name"
               autoComplete="off"
               disabled={isAddingShoppingList}
-              className={clsx(
-                "block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
-                "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
-              )}
-              {...register("name", { required: "This field is required" })}
+              register={() =>
+                register("name", { required: "This field is required" })
+              }
             />
           </FormRow>
         </div>

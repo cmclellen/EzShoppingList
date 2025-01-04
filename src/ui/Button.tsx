@@ -33,7 +33,7 @@ function Button({
       onClick={onClick && handleClick}
       type={type}
     >
-      {icon} <span>{children}</span>
+      {icon}&nbsp;<span>{children}</span>
     </button>
   );
 }
