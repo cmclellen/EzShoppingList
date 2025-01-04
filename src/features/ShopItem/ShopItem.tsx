@@ -19,7 +19,7 @@ function ShopItem({ name, completed }: ShopItemProps) {
       >
         <FaCheck className="hidden size-4 fill-primary group-data-[checked]:block" />
       </Checkbox>
-      <span className={completed ? "line-through" : ""}>{name}</span>
+      <span className={isCompleted ? "line-through" : ""}>{name}</span>
     </li>
   );
 }
