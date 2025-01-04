@@ -27,7 +27,7 @@ function ShoppingListItem({ id, name }: ShoppingListItemProps) {
       key={name}
       className="relative border font-semibold w-full md:w-3/12 rounded-lg border-primary"
     >
-      <Link to={name} className="block p-3 ">
+      <Link to={id.toString()} className="block p-3 ">
         <div className="text-center text-primary">{name}</div>
       </Link>
       <Modal.Open opensWindowName={`delete-${name}`}>
