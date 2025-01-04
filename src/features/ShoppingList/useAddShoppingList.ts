@@ -5,7 +5,6 @@ import QueryKey from "../../utils/queryKeys";
 
 export default function useAddShoppingList() {
   const queryClient = useQueryClient();
-
   const { isPending: isAddingShoppingList, mutate: addShoppingList } =
     useMutation({
       mutationFn: addShoppingListApi,

@@ -82,14 +82,14 @@ function MainNav() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
+            {/* <button
               type="button"
               className="relative rounded-full bg-primary p-1 text-background hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
               <HiBell aria-hidden="true" className="size-6" />
-            </button>
+            </button> */}
 
             <DarkModeToggle />
 
