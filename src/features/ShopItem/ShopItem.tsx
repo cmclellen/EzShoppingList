@@ -1,6 +1,6 @@
 import { Checkbox } from "@headlessui/react";
 import { useState } from "react";
-import { HiCheck } from "react-icons/hi2";
+import { FaCheck } from "react-icons/fa";
 
 interface ShopItemProps {
   name: string;
@@ -17,7 +17,7 @@ function ShopItem({ name, completed }: ShopItemProps) {
         onChange={setIsCompleted}
         className="group size-6 rounded-md bg-primary/10 p-1 ring-1 ring-primary/15 ring-inset data-[checked]:bg-primary/10"
       >
-        <HiCheck className="hidden size-4 fill-primary group-data-[checked]:block" />
+        <FaCheck className="hidden size-4 fill-primary group-data-[checked]:block" />
       </Checkbox>
       <span className={completed ? "line-through" : ""}>{name}</span>
     </li>
