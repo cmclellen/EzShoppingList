@@ -23,6 +23,7 @@ async function getShoppingList(id: number): Promise<ShoppingList> {
   const { data, error } = await supabase
     .from("ShoppingList")
     .select("*, ShopItem (*)")
+    .order("name", { referencedTable: "ShopItem", ascending: true })
     .eq("id", id)
     .limit(1)
     .single();
