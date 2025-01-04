@@ -9,9 +9,7 @@ function ShoppingList() {
   const { id } = useParams();
 
   const { shoppingList, isLoading } = useShoppingList(Number(id));
-
   const shopItems = shoppingList?.ShopItem;
-  console.log(shopItems);
 
   if (isLoading) return <Spinner />;
 
@@ -21,7 +19,11 @@ function ShoppingList() {
         <ul className="divide-primary divide-y">
           {shopItems &&
             shopItems.map((item) => (
-              <ShopItem key={item.id} id={item.id} name={item.name} />
+              <ShopItem
+                key={item.id}
+                name={item.name}
+                completed={item.completed}
+              />
             ))}
         </ul>
       ) : (
