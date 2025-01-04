@@ -4,6 +4,8 @@ import { FaCheck } from "react-icons/fa";
 import { updateShopItemCompletedStatus } from "../../services/apiShopItem";
 import toast from "react-hot-toast";
 import QueryKey from "../../utils/queryKeys";
+import { TiTrash } from "react-icons/ti";
+import clsx from "clsx";
 
 interface ShopItemProps {
   id: number;
@@ -35,7 +37,10 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
       >
         <FaCheck className="hidden size-4 fill-primary group-data-[checked]:block" />
       </Checkbox>
-      <span className={completed ? "line-through" : ""}>{name}</span>
+      <span className={clsx(completed ? "line-through" : "", "flex-1")}>
+        {name}
+      </span>
+      <TiTrash className="text-2xl" />
     </li>
   );
 }
