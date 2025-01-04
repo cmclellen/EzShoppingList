@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import ShoppingList from "./pages/ShoppingList";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +25,7 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
         <DarkModeProvider>
           <Routes>
+            <Route path="login" element={<Login />}></Route>
             <Route element={<AppLayout />}>
               <Route index element={<Navigate replace to="shopping-lists" />} />
               <Route path="shopping-lists" element={<ShoppingLists />}>

@@ -1,4 +1,4 @@
-import { Field, Input, Label } from "@headlessui/react";
+import { Field, Input } from "@headlessui/react";
 import PageLayout from "../ui/PageLayout";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
@@ -7,6 +7,7 @@ import { TiPlus, TiTimes } from "react-icons/ti";
 import useAddShopItem from "../features/ShopItem/useAddShopItem";
 import { ShopItem } from "../services/apiShopItem";
 import { useModal } from "../ui/Modal";
+import FormRow from "../ui/FormRow";
 
 interface AddShoppingListItemProps {
   shoppingListId: number;
@@ -43,19 +44,17 @@ function AddShoppingListItem({ shoppingListId }: AddShoppingListItemProps) {
         ></Input>
         <div className="w-full">
           <Field>
-            <Label className="text-sm/6 font-medium text-primary">Name</Label>
-            <Input
-              placeholder="Name of the item"
-              autoComplete="off"
-              className={clsx(
-                "mt-3 block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
-                "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
-              )}
-              {...register("name", { required: "This field is required" })}
-            />
-            {errors?.name?.message && (
-              <span>{String(errors["name"]?.message)}</span>
-            )}
+            <FormRow label="Name" error={errors?.name?.message}>
+              <Input
+                placeholder="Name"
+                autoComplete="off"
+                className={clsx(
+                  "block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
+                  "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
+                )}
+                {...register("name", { required: "This field is required" })}
+              />
+            </FormRow>
           </Field>
         </div>
 

@@ -13,23 +13,20 @@ import { forwardRef } from "react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
+import clsx from "clsx";
+import NavLogo from "./NavLogo";
 
 const navigation = [{ name: "Lists", to: "/shopping-lists", current: true }];
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const NavButton = forwardRef(function (item: any, ref: any) {
   let clazz: string = item.current
-    ? "bg-tertiary text-on-tertiary"
-    : "text-on-secondary hover:bg-gray-700 hover:text-white";
+    ? "font-semibold underline decoration-2 underline-offset-4"
+    : "font-normal hover:bg-primary hover:text-white";
 
-  clazz = classNames(
+  clazz = clsx(
     clazz,
-    item.isMobile
-      ? "block rounded-md px-3 py-2 text-base font-medium"
-      : "rounded-md px-3 py-2 text-sm font-medium"
+    item.isMobile ? "block text-base" : "text-sm",
+    "px-3 py-2"
   );
 
   return (
@@ -61,12 +58,7 @@ function MainNav() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <span className="text-3xl text-stone-800">🛒</span>
-              {/* <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
-              /> */}
+              <NavLogo />
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

@@ -1,4 +1,4 @@
-import { Field, Input, Label } from "@headlessui/react";
+import { Input } from "@headlessui/react";
 import PageLayout from "../ui/PageLayout";
 import clsx from "clsx";
 import Button from "../ui/Button";
@@ -7,6 +7,7 @@ import { ShoppingList } from "../services/apiShoppingLists";
 import { useForm } from "react-hook-form";
 import useAddShoppingList from "../features/ShoppingList/useAddShoppingList";
 import { useModal } from "../ui/Modal";
+import FormRow from "../ui/FormRow";
 
 function AddShoppingList() {
   const { close } = useModal();
@@ -32,21 +33,17 @@ function AddShoppingList() {
     <PageLayout title="Add shopping list">
       <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full">
-          <Field>
-            <Label className="text-sm/6 font-medium text-primary">Name</Label>
+          <FormRow label="Name" error={errors?.name?.message}>
             <Input
-              placeholder="Name of the shopping list"
+              placeholder="Name"
               autoComplete="off"
               className={clsx(
-                "mt-3 block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
+                "block w-full rounded-lg border-none bg-primary/10 py-1.5 px-3 text-sm/6 text-primary placeholder-primary/50",
                 "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary/25"
               )}
               {...register("name", { required: "This field is required" })}
             />
-            {errors?.name?.message && (
-              <span>{String(errors["name"]?.message)}</span>
-            )}
-          </Field>
+          </FormRow>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 mt-4">
