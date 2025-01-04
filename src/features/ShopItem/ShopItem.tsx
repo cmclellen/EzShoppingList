@@ -4,6 +4,11 @@ import { FaCheck } from "react-icons/fa";
 import { updateShopItemCompletedStatus } from "../../services/apiShopItem";
 import toast from "react-hot-toast";
 import QueryKey from "../../utils/queryKeys";
+import { TiTrash } from "react-icons/ti";
+import clsx from "clsx";
+import useDeleteShopItem from "./useDeleteShopItem";
+import Modal, { useModal } from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 interface ShopItemProps {
   id: number;
@@ -12,6 +17,7 @@ interface ShopItemProps {
 }
 
 function ShopItem({ id, name, completed }: ShopItemProps) {
+  const { close } = useModal();
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -26,6 +32,16 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
     },
   });
 
+  const { deleteShopItem, isDeletingShopItem } = useDeleteShopItem();
+
+  function handleOnDelete(id: number) {
+    deleteShopItem(id, {
+      onSuccess: () => {
+        close();
+      },
+    });
+  }
+
   return (
     <li className="font-semibold flex gap-2 items-center py-5">
       <Checkbox
@@ -35,7 +51,19 @@ function ShopItem({ id, name, completed }: ShopItemProps) {
       >
         <FaCheck className="hidden size-4 fill-primary group-data-[checked]:block" />
       </Checkbox>
-      <span className={completed ? "line-through" : ""}>{name}</span>
+      <span className={clsx(completed ? "line-through" : "", "flex-1")}>
+        {name}
+      </span>
+      <Modal.Open opensWindowName={`delete-${id}`}>
+        <TiTrash className="text-2xl" />
+      </Modal.Open>
+      <Modal.Window name={`delete-${id}`}>
+        <ConfirmDelete
+          onDelete={() => handleOnDelete(id)}
+          disabled={isDeletingShopItem}
+          resourceName={name}
+        />
+      </Modal.Window>
     </li>
   );
 }

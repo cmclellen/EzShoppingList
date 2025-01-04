@@ -4,6 +4,10 @@ import Spinner from "../ui/Spinner";
 import useShoppingList from "../features/ShoppingList/useShoppingList";
 import Empty from "../ui/Empty";
 import ShopItem from "../features/ShopItem/ShopItem";
+import Modal from "../ui/Modal";
+import Button from "../ui/Button";
+import { TiPlus } from "react-icons/ti";
+import AddShoppingListItem from "./AddShoppingListItem";
 
 function ShoppingList() {
   const { id } = useParams();
@@ -21,7 +25,7 @@ function ShoppingList() {
             shopItems.map((item) => (
               <ShopItem
                 key={item.id}
-                id={item.id}
+                id={item.id!}
                 name={item.name}
                 completed={item.completed}
               />
@@ -30,6 +34,14 @@ function ShoppingList() {
       ) : (
         <Empty resourceName="shop items" />
       )}
+      <div className="mt-2">
+        <Modal.Open opensWindowName="add">
+          <Button icon={<TiPlus />}>Add item</Button>
+        </Modal.Open>
+        <Modal.Window name="add">
+          <AddShoppingListItem shoppingListId={shoppingList!.id!} />
+        </Modal.Window>
+      </div>
     </PageLayout>
   );
 }
