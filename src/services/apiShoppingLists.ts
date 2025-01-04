@@ -30,4 +30,12 @@ async function addShoppingList(shoppingList: ShoppingList) {
   return data;
 }
 
-export { getShoppingLists, addShoppingList };
+async function deleteShoppingList(id: number) {
+  const { error } = await supabase.from("ShoppingList").delete().eq("id", id);
+  if (error) {
+    console.error(error);
+    throw new Error("Shopping list could not be deleted");
+  }
+}
+
+export { getShoppingLists, addShoppingList, deleteShoppingList };
