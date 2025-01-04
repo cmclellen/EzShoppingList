@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  cloneElement,
+  createContext,
+  ReactElement,
+  ReactNode,
+  useContext,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 
 interface ModalContextType {
@@ -37,6 +44,17 @@ function Modal({ children }: ModalProps) {
   );
 }
 
+interface OpenProps {
+  children: ReactElement;
+  opensWindowName: string;
+}
+
+function Open({ children, opensWindowName }: OpenProps) {
+  const { open } = useContext(ModalContext);
+
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
+}
+
 interface WindowProps {
   children: ReactNode;
   opens: string;
@@ -68,5 +86,6 @@ function Window({ children, opens }: WindowProps) {
 }
 
 Modal.Window = Window;
+Modal.Open = Open;
 
 export default Modal;
