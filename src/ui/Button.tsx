@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 interface ButtonProps {
   children: ReactNode;
-  icon: ReactNode;
+  icon?: ReactNode;
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
@@ -33,7 +33,7 @@ function Button({
       onClick={onClick && handleClick}
       type={type}
     >
-      {icon}&nbsp;<span>{children}</span>
+      {icon} {children}
     </button>
   );
 }
