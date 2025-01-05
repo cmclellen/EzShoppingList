@@ -17,10 +17,10 @@
 .dark {
   --background: 41, 37, 36;
   --primary: 168, 162, 158;
-  --secondary: 31, 41, 55;
-  --on-secondary: 255, 255, 255;
-  --tertiary: 75, 85, 99;
+  --tertiary: 31, 41, 55;
   --on-tertiary: 255, 255, 255;
+  --secondary: 75, 85, 99;
+  --on-secondary: 255, 255, 255;
 
   background: rgba(var(--background));
   color: rgba(var(--primary));

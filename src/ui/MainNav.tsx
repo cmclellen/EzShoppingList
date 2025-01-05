@@ -13,7 +13,10 @@ import clsx from "clsx";
 import NavLogo from "./NavLogo";
 import NavBarUser from "./NavBarUser";
 
-const navigation = [{ name: "Lists", to: "/shopping-lists", current: true }];
+const navigation = [
+  { name: "Lists", to: "/shopping-lists", current: true },
+  // { name: "Other", to: "/shopping-lists", current: false },
+];
 
 const NavButton = forwardRef(function (item: any, ref: any) {
   let clazz: string = item.current
@@ -35,7 +38,7 @@ const NavButton = forwardRef(function (item: any, ref: any) {
 
 function MainNav() {
   return (
-    <Disclosure as="nav" className="bg-secondary">
+    <Disclosure as="nav" className="bg-secondary text-primary">
       <div className="mx-auto container px-2 sm:px-0">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
