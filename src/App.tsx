@@ -8,7 +8,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import ShoppingList from "./pages/ShoppingList";
-import Login from "./pages/Login";
 import LoginForm from "./features/authentication/LoginForm";
 import SignupForm from "./features/authentication/SignupForm";
 import FullPage from "./ui/FullPage";
@@ -39,7 +38,7 @@ function App() {
             <Route
               path="signup"
               element={
-                <FullPage title="Signup">
+                <FullPage title="Sign up">
                   <SignupForm />
                 </FullPage>
               }
