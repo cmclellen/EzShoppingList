@@ -9,6 +9,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import ShoppingList from "./pages/ShoppingList";
 import Login from "./pages/Login";
+import LoginForm from "./features/authentication/LoginForm";
+import SignupForm from "./features/authentication/SignupForm";
+import FullPage from "./ui/FullPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +28,22 @@ function App() {
         <ReactQueryDevtools initialIsOpen={false} />
         <DarkModeProvider>
           <Routes>
-            <Route path="login" element={<Login />}></Route>
+            <Route
+              path="login"
+              element={
+                <FullPage title="Log In">
+                  <LoginForm />
+                </FullPage>
+              }
+            ></Route>
+            <Route
+              path="signup"
+              element={
+                <FullPage title="Signup">
+                  <SignupForm />
+                </FullPage>
+              }
+            ></Route>
             <Route element={<AppLayout />}>
               <Route index element={<Navigate replace to="shopping-lists" />} />
               <Route path="shopping-lists" element={<ShoppingLists />}>

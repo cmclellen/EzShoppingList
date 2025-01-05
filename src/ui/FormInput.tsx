@@ -5,7 +5,7 @@ import clsx from "clsx";
 interface FormInputProps {
   type?: string;
   id?: string;
-  disabled: boolean;
+  disabled?: boolean;
   placeholder: string;
   autoComplete?: string;
   register: () => any;
@@ -13,7 +13,7 @@ interface FormInputProps {
 
 function FormInput({
   type,
-  disabled,
+  disabled = false,
   placeholder,
   autoComplete,
   register,
