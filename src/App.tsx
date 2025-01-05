@@ -11,6 +11,7 @@ import ShoppingList from "./pages/ShoppingList";
 import LoginForm from "./features/authentication/LoginForm";
 import SignupForm from "./features/authentication/SignupForm";
 import FullPage from "./ui/FullPage";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,7 +44,13 @@ function App() {
                 </FullPage>
               }
             ></Route>
-            <Route element={<AppLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to="shopping-lists" />} />
               <Route path="shopping-lists" element={<ShoppingLists />}>
                 <Route path=":id" element={<ShoppingList />}></Route>

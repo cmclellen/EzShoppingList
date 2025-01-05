@@ -82,6 +82,19 @@ function SignupForm() {
           }
         />
       </FormRow>
+      <FormRow label="Avatar URL" error={errors?.avatarUrl?.message}>
+        <FormInput
+          type="text"
+          id="avatarUrl"
+          placeholder="Avatar URL"
+          disabled={isCreatingNewUser}
+          register={() =>
+            register("avatarUrl", {
+              required: "Avatar URL is required",
+            })
+          }
+        />
+      </FormRow>
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 mt-4">
         <Button
