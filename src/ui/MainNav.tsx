@@ -14,23 +14,29 @@ import NavLogo from "./NavLogo";
 import NavBarUser from "./NavBarUser";
 
 const navigation = [
-  { name: "Lists", to: "/shopping-lists", current: true },
+  { name: "Shopping Lists", to: "/shopping-lists", current: true },
   // { name: "Other", to: "/shopping-lists", current: false },
 ];
 
 const NavButton = forwardRef(function (item: any, ref: any) {
-  let clazz: string = item.current
-    ? "font-semibold underline decoration-2 underline-offset-4"
-    : "font-normal hover:bg-primary hover:text-white";
-
-  clazz = clsx(
-    clazz,
+  const clazz = clsx(
     item.isMobile ? "block text-base" : "text-sm",
     "px-3 py-2"
   );
 
   return (
-    <NavLink ref={ref} key={item.name} className={clazz} to={item.to}>
+    <NavLink
+      ref={ref}
+      key={item.name}
+      className={({ isActive }) =>
+        `${clazz} ${
+          isActive
+            ? "font-semibold underline decoration-2 underline-offset-4"
+            : "font-normal hover:bg-primary hover:text-white"
+        }`
+      }
+      to={item.to}
+    >
       {item.name}
     </NavLink>
   );
