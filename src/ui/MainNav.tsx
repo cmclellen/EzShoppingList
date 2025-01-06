@@ -14,7 +14,7 @@ import NavLogo from "./NavLogo";
 import NavBarUser from "./NavBarUser";
 
 const navigation = [
-  { name: "Lists", to: "/shopping-lists", current: true },
+  { name: "Shopping Lists", to: "/shopping-lists", current: true },
   // { name: "Other", to: "/shopping-lists", current: false },
 ];
 
